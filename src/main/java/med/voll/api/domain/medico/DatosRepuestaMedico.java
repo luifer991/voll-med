@@ -8,6 +8,7 @@ public record DatosRepuestaMedico(
         String email,
         String telefono,
         String documento,
+        String especialidad,
         DatosDireccion direccion
 ) {
 }

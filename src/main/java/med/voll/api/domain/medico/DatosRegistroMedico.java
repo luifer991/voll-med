@@ -9,7 +9,7 @@ import med.voll.api.domain.direccion.DatosDireccion;
 
 public record DatosRegistroMedico(
         
-        @NotBlank
+        @NotBlank(message = "Nombre es obligatorio")
         String nombre,
         @NotBlank
         @Email
