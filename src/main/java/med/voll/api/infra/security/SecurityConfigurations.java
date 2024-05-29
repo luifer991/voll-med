@@ -34,8 +34,9 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                                .requestMatchers(HttpMethod.DELETE, "/medicos").hasRole("ADMIN") /// para eliminar necesita el perfirl admin
-                                .requestMatchers(HttpMethod.DELETE, "/pacientes").hasRole("ADMIN")
+//                                .requestMatchers(HttpMethod.DELETE, "/medicos").hasRole("ADMIN") /// para eliminar necesita el perfirl admin
+//                                .requestMatchers(HttpMethod.DELETE, "/pacientes").hasRole("ADMIN")
+                                .requestMatchers("/swagger-ui.html", "/v3/api-docs/**",  "/swagger-ui/**").permitAll()
                                 .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
