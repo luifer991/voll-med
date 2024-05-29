@@ -3,8 +3,13 @@ package med.voll.api.domain.consulta.validaciones;
 import jakarta.validation.ValidationException;
 import med.voll.api.domain.consulta.DatosAgemdarConsulta;
 import med.voll.api.domain.medico.MedicoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class MedicoActivo {
+@Component
+public class MedicoActivo implements ValidadorDeConsultas{
+    
+    @Autowired
     private MedicoRepository repository;
     
     public void validar( DatosAgemdarConsulta datos ) {
@@ -12,10 +17,10 @@ public class MedicoActivo {
             return;
         }
         
-        var medicoActivo = repository.findActivoById(datos.idPaciente());
+        var medicoActivo = repository.findActivoById(datos.idMedico());
         
         if ( !medicoActivo ) {
-            throw new ValidationException("No se puede permitir agendar citas con pacientes incactivosm");
+            throw new ValidationException("No se puede permitir agendar citas con medicos inactivos");
         }
     }
 }

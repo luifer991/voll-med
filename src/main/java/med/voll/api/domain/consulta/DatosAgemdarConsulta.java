@@ -7,13 +7,13 @@ import med.voll.api.domain.medico.Especialidad;
 import java.time.LocalDateTime;
 
 public record DatosAgemdarConsulta(
-        Long id,
+        
         @NotNull
         Long idPaciente,
         Long idMedico,
         @NotNull
         @Future
         LocalDateTime fecha,
-        Especialidad especialidad
-) {
+        Especialidad especialidad) {
+        
 }

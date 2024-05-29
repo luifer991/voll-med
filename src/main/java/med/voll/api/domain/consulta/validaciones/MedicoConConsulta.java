@@ -3,18 +3,21 @@ package med.voll.api.domain.consulta.validaciones;
 import jakarta.validation.ValidationException;
 import med.voll.api.domain.consulta.ConsultaRepository;
 import med.voll.api.domain.consulta.DatosAgemdarConsulta;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class MedicoConConsulta {
-    
+@Component
+public class MedicoConConsulta implements  ValidadorDeConsultas{
+    @Autowired
     private ConsultaRepository repository;
     
-    public void validar( DatosAgemdarConsulta datos ) {
-        if ( datos.idMedico() == null )
+    public void validar( DatosAgemdarConsulta datos) {
+        if(datos.idMedico()==null)
             return;
         
-        var medicoConConsulta = repository.existsByMedicpIdAndDataBetween(datos.idMedico(), datos.fecha());
-        
-        if ( medicoConConsulta )
-            throw new ValidationException("Este médico ya tiene una consulta en ese horario");
+        var medicoConConsulta= repository.existsByMedicoIdAndFecha(datos.idMedico(),datos.fecha());
+        if(medicoConConsulta){
+            throw new ValidationException("este medico ya tiene una consulta en ese horario");
+        }
     }
 }
