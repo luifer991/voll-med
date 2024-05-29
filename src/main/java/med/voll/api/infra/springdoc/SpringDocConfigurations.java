@@ -30,9 +30,7 @@ public class SpringDocConfigurations {
                                 .name("Apache 2.0")
                                 .url("http://voll.med/api/licencia")));  }
     
-//    @Bean
-//    public void message () {
-//        System.out.println("bearer is working");
-//    }
-    
+    public void message () {
+        System.out.println("bearer is working");
+    }
 }
